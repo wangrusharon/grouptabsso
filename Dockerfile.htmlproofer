@@ -1,0 +1,13 @@
+# htmlproofer: a test tool for web sites
+FROM ruby:2.5-alpine
+
+# Speed up html-proofer in pipelines
+#ENV NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+
+# https://github.com/gliderlabs/docker-alpine/issues/53#issuecomment-125671731
+RUN apk add --update build-base libxml2-dev libxslt-dev libcurl
+RUN gem install nokogiri --
+RUN gem install html-proofer --no-document
+
+ENTRYPOINT ["htmlproofer"]
+CMD ["--help"]

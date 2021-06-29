@@ -1,0 +1,8 @@
+#FROM node:argon
+FROM node:9.4.0-alpine
+
+# Install spellcheck
+RUN npm install -g --save https://github.com/ojacques/node-markdown-spellcheck/tarball/master
+
+ENTRYPOINT ["mdspell"]
+CMD ["--help"]
